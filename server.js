@@ -22,6 +22,22 @@ app.get("/", (req, res) => {
   res.send("Plenty Telegram Bot läuft ✅");
 });
 
+// Einfacher Test-Endpoint, per Browser (GET) direkt aufrufbar - kein CORS-Problem
+app.get("/test-signal", async (req, res) => {
+  try {
+    const message = formatMessage({
+      symbol: "EURUSD",
+      signal: "TEST",
+      price: "1.13704",
+      time: new Date().toISOString(),
+    });
+    await sendToTelegram(message);
+    res.send("✅ Test-Nachricht wurde an Telegram gesendet! Check deinen Kanal 'Plenty Signals'.");
+  } catch (err) {
+    res.status(500).send("❌ Fehler beim Senden: " + err.message);
+  }
+});
+
 // Der eigentliche Webhook-Endpoint für TradingView
 app.post("/webhook", async (req, res) => {
   try {
