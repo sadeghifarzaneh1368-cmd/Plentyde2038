@@ -1,4 +1,4 @@
-// Plenty Telegram Signal Bot
+// Pl// Plenty Telegram Signal Bot v2
 // Empfängt TradingView-Alerts per Webhook und postet sie in deinen Telegram-Kanal
 
 const express = require("express");
